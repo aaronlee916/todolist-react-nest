@@ -5,7 +5,19 @@ let instance = axios.create({
   baseURL: "http://localhost:3000",
   timeout: 60000,
 });
+async function handleButtonClick(data,inputValue,setData) {
+  console.log(data,inputValue)
+  await instance
+    .post("/post-new-todo-item/new", {
+      currArray: data,
+      newItem: inputValue,
+    })
+    .then((res) => setData(res.data))
+    .catch(function (error) {
+      // console.log(error);
+    });
 
+}
 function App() {
   let [data, setData] = useState([]);
   let inputValue = useRef();
@@ -21,21 +33,7 @@ function App() {
   return (
     <>
       <input ref={inputValue} />
-      <button
-        onClick={async () => {
-          await instance
-            .post("/post-new-todo-item/new", {
-              currArray: data,
-              newItem: inputValue,
-            })
-            .then((res) => setData(res.data))
-            .catch(function (error) {
-              // console.log(error);
-            });
-
-        }
-      }
-      >
+      <button onClick={()=>handleButtonClick(data,inputValue.current.value,setData)}>
         确认
       </button>
       <ul>
