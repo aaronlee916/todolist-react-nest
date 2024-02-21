@@ -14,7 +14,7 @@ function App() {
       .get("/todo-item/get-todo")
       .then((response) => setData(response.data))
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
   },[]);
 
@@ -22,16 +22,17 @@ function App() {
     <>
       <input ref={inputValue} />
       <button
-        onClick={() => {
-          instance
+        onClick={async () => {
+          await instance
             .post("/post-new-todo-item/new", {
               currArray: data,
               newItem: inputValue,
             })
-            .then((res) => console.log(res))
+            .then((res) => setData(res.data))
             .catch(function (error) {
-              console.log(error);
+              // console.log(error);
             });
+
         }
       }
       >
