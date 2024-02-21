@@ -6,15 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TodoItemService = void 0;
+exports.DeleteTodoItemService = void 0;
 const common_1 = require("@nestjs/common");
-let TodoItemService = class TodoItemService {
-    getTodo() {
-        return ['这是一条默认todoItem，请删除后添加自己的todoItem....'];
+let DeleteTodoItemService = class DeleteTodoItemService {
+    deleteTodoItem(deleteItemDto) {
+        return deleteItemDto.currArray.slice(0, deleteItemDto.currArray.length - 1);
     }
 };
-exports.TodoItemService = TodoItemService;
-exports.TodoItemService = TodoItemService = __decorate([
+exports.DeleteTodoItemService = DeleteTodoItemService;
+exports.DeleteTodoItemService = DeleteTodoItemService = __decorate([
     (0, common_1.Injectable)()
-], TodoItemService);
-//# sourceMappingURL=todo-item.service.js.map
+], DeleteTodoItemService);
+//# sourceMappingURL=delete-todo-item.service.js.map

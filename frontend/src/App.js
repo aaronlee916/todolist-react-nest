@@ -6,7 +6,6 @@ let instance = axios.create({
   timeout: 60000,
 });
 async function handleButtonClick(data,inputValue,setData) {
-  console.log(data,inputValue)
   await instance
     .post("/post-new-todo-item/new", {
       currArray: data,
@@ -16,8 +15,16 @@ async function handleButtonClick(data,inputValue,setData) {
     .catch(function (error) {
       // console.log(error);
     });
-
 }
+
+async function deleteTodoItem(currArray,setData){
+  await instance.delete('/delete-todo-item/delete',{
+    data:{
+      currArray
+    }
+  }).then(res=>setData(res.data))
+}
+
 function App() {
   let [data, setData] = useState([]);
   let inputValue = useRef();
@@ -34,8 +41,9 @@ function App() {
     <>
       <input ref={inputValue} />
       <button onClick={()=>handleButtonClick(data,inputValue.current.value,setData)}>
-        确认
+        添加
       </button>
+      <button onClick={()=>deleteTodoItem(data,setData)}>删除</button>
       <ul>
         {data.map((item, index) => (
           <li key={index}>{item}</li>
