@@ -10,9 +10,8 @@ exports.PostNewTodoItemService = void 0;
 const common_1 = require("@nestjs/common");
 let PostNewTodoItemService = class PostNewTodoItemService {
     postNew(todoItemDto) {
-        const { currArray, newItem } = todoItemDto;
-        currArray.push(newItem);
-        return currArray;
+        todoItemDto.currArray.push(todoItemDto.newItem);
+        return todoItemDto.currArray;
     }
 };
 exports.PostNewTodoItemService = PostNewTodoItemService;
