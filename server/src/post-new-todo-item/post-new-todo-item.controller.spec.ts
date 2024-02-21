@@ -9,7 +9,9 @@ describe('PostNewTodoItemController', () => {
       controllers: [PostNewTodoItemController],
     }).compile();
 
-    controller = module.get<PostNewTodoItemController>(PostNewTodoItemController);
+    controller = module.get<PostNewTodoItemController>(
+      PostNewTodoItemController,
+    );
   });
 
   it('should be defined', () => {
